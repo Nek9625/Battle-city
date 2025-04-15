@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/Nikol_repos/battle-city/build/cmake_install.cmake",
+		"D:/Nikol_repos/battle-city/build/external/glfw/cmake_install.cmake",
+		"D:/Nikol_repos/battle-city/build/external/glfw/src/cmake_install.cmake",
+		"D:/Nikol_repos/battle-city/build/external/glfw/docs/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
