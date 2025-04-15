@@ -1,14 +1,16 @@
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
 
 int main(void)
 {
     GLFWwindow* window;
 
-    /* Initialize the library */
+    // Инициализация GLFW
     if (!glfwInit())
         return -1;
 
-    /* Create a windowed mode window and its OpenGL context */
+    // Создание окна
     window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
     if (!window)
     {
@@ -16,22 +18,36 @@ int main(void)
         return -1;
     }
 
-    /* Make the window's context current */
+    // Сделать контекст текущим
     glfwMakeContextCurrent(window);
 
-    /* Loop until the user closes the window */
+    // Загрузка OpenGL-функций через GLAD
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cout << "Can't load GLAD" << std::endl;
+        return -1;
+    }
+
+    // Получение и вывод версии OpenGL
+    const GLubyte* version = glGetString(GL_VERSION);
+    std::cout << "OpenGL Version: " << version << std::endl;
+
+    // Установка цвета очистки экрана (зеленый фон)
+    glClearColor(1.0f, 1.0f, 0.0f, 1.0f);
+
+    // Главный цикл приложения
     while (!glfwWindowShouldClose(window))
     {
-        /* Render here */
-        //glClear(GL_COLOR_BUFFER_BIT);
+        // Очистка экрана
+        glClear(GL_COLOR_BUFFER_BIT);
 
-        /* Swap front and back buffers */
+        // Обмен буферов (двойная буферизация)
         glfwSwapBuffers(window);
 
-        /* Poll for and process events */
+        // Обработка событий
         glfwPollEvents();
     }
 
+    // Очистка ресурсов
     glfwTerminate();
     return 0;
 }
